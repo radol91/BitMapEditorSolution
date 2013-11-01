@@ -15,17 +15,37 @@ namespace BitMapEditor
             this.strFunName = strFunName;
             this.second = second;
             this.milisecond = milisecond;
+            this.strMilis = convertMilis(milisecond);
             this.sizeX = sizeX;
             this.sizeY = sizeY;
         }
 
         private String strImpl;
         private String strFunName;
+        public String strMilis { get; set; }
         private int second;
         private int milisecond;
         private int sizeX;
         private int sizeY;
 
+
+        public static String convertMilis(int milisecond)
+        {
+            String strMilis = "00";
+            if (milisecond > 0)
+            {
+                if (milisecond < 100)
+                {
+                    strMilis = ((float)milisecond / 1000).ToString();
+                    return strMilis.Substring(2);
+
+                }
+                else
+                    strMilis = milisecond.ToString();
+            }
+            return strMilis;
+        }
+        
         public String Implementation
         {
             get

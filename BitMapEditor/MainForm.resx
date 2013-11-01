@@ -2236,7 +2236,7 @@
   <data name="cToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADr4AAA6+AepCscAAAAI+SURBVDhPbZJNaxNRFIZn2V8g/QPmF6SLrkvF6Fqwiy4s
+        YQUAAAAJcEhZcwAADr0AAA69AUf7kK0AAAI+SURBVDhPbZJNaxNRFIZn2V8g/QPmF6SLrkvF6Fqwiy4s
         FBUMFtxocCFFg0nEREQU2iio1KYm1DENyUxaJpsgxibgQqWFJNqSNmIXbSbzlUz69n6MNRPzwuEMM+d9
         7jnnjkCV3SpevJ2NYmntPRJrKSiKgkKh8F/Q95qmgZn6dVm++8FbuIpr4jxuKVE0D5ro9WwcH/dY2HaX
         5VKpBFmWsdPYdUMCG08enZPmcF0KYka5j9cVkQH6ITSKxSJ0XWeQarX6DxLJLty59OwGYulF+MUHyHzK
@@ -2948,10 +2948,10 @@
     <value>1</value>
   </data>
   <data name="progressBar2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>553, 437</value>
+    <value>746, 437</value>
   </data>
   <data name="progressBar2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>226, 10</value>
+    <value>34, 10</value>
   </data>
   <data name="progressBar2.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
@@ -2968,9 +2968,6 @@
   <data name="&gt;&gt;progressBar2.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <metadata name="backgroundWorker1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>248, 17</value>
-  </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -3084,12 +3081,6 @@
   </data>
   <data name="&gt;&gt;toolStripStatusLabel2.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;backgroundWorker1.Name" xml:space="preserve">
-    <value>backgroundWorker1</value>
-  </data>
-  <data name="&gt;&gt;backgroundWorker1.Type" xml:space="preserve">
-    <value>System.ComponentModel.BackgroundWorker, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainForm</value>

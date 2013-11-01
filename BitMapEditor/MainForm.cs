@@ -13,6 +13,7 @@ using System.Diagnostics;
 
 namespace BitMapEditor
 {
+
     public partial class MainForm : Form
     {
         private MyBitmap myBitmap;
@@ -20,22 +21,20 @@ namespace BitMapEditor
         private FormViewer formViewer;
         private Stopwatch stopwatch;
         internal enum Implement{ ASEMBLER, C__SHARP };
-        internal enum Action { ____INVERSE, ____SHARPEN, GREY_SCALE };
+        internal enum Action { BMP_INVERSE, BMP__SHARPEN, BMP_GREYSCALE };
         private List<TimeResult> listTimeResult;
-        private BackgroundWorker bW;
 
         public MainForm()
         {
             InitializeComponent();
+            progressBar2.Step = 1;
+            progressBar2.Maximum = 100;
             formViewer = new FormViewer();
             bmpManager = new BitmapManager();
             stopwatch = new Stopwatch();
             listTimeResult = new List<TimeResult>();
-            bW = new BackgroundWorker();
-            bW.RunWorkerAsync();
-            progressBar2.Maximum = 100;
-            progressBar2.Step = 1;
         }
+
 
         private void otwórzPlikToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -46,8 +45,7 @@ namespace BitMapEditor
                 formViewer.showBitmap(myBitmap.CurrentBitmap, pictureBox2);
                 formViewer.updateLabel(myBitmap.BitmapInfo.Path, labPath);
                 formViewer.updateLabel(myBitmap.BitmapInfo.SizeX + " x " + myBitmap.BitmapInfo.SizeY, labRes);
-            }
-        
+            }        
         }
 
         private void zapiszToolStripMenuItem_Click(object sender, EventArgs e)
@@ -70,7 +68,7 @@ namespace BitMapEditor
         {
             if (myBitmap != null)
             {
-                startAction(Action.____INVERSE, rbAsm.Checked);
+                startAction(Action.BMP_INVERSE, rbAsm.Checked);
             }
         }
 
@@ -78,7 +76,7 @@ namespace BitMapEditor
         {
             if (myBitmap != null)
             {
-                startAction(Action.GREY_SCALE, rbAsm.Checked);
+                startAction(Action.BMP_GREYSCALE, rbAsm.Checked);
             }
         }
 
@@ -86,7 +84,7 @@ namespace BitMapEditor
         {
             if (myBitmap != null)
             {
-                startAction(Action.____SHARPEN, rbAsm.Checked);
+                startAction(Action.BMP__SHARPEN, rbAsm.Checked);
             }
         }
 
@@ -111,6 +109,7 @@ namespace BitMapEditor
 
         private void startAction(Action action, bool isAsmEnable)
         {
+            progressBar2.Value = 0;
             Implement impl;
             stopwatch.Reset();
             stopwatch.Start();
@@ -119,11 +118,11 @@ namespace BitMapEditor
                 impl = Implement.ASEMBLER;
                 switch (action)
                 {
-                    case Action.____INVERSE:
+                    case Action.BMP_INVERSE:
                         break;
-                    case Action.GREY_SCALE:                       
+                    case Action.BMP_GREYSCALE:                       
                         break;
-                    case Action.____SHARPEN:
+                    case Action.BMP__SHARPEN:
                         break;
                 }
             }
@@ -132,26 +131,27 @@ namespace BitMapEditor
                 impl = Implement.C__SHARP;
                 switch (action)
                 {
-                    case Action.____INVERSE:
+                    case Action.BMP_INVERSE:
                         bmpManager.BitMapEditor.inverseBitmap(myBitmap);
                         break;
-                    case Action.GREY_SCALE:
+                    case Action.BMP_GREYSCALE:
                         bmpManager.BitMapEditor.grayScale(myBitmap);
                         break;
-                    case Action.____SHARPEN:
+                    case Action.BMP__SHARPEN:
                         bmpManager.BitMapEditor.sharpenBitmap(myBitmap);
                         break;
+                        
                 }
             }
             stopwatch.Stop();
-
+            progressBar2.Value = progressBar2.Maximum;
             listTimeResult.Add(new TimeResult(impl.ToString(), 
                                     action.ToString(), 
                                     stopwatch.Elapsed.Seconds,
                                     stopwatch.Elapsed.Milliseconds,
                                     myBitmap.BitmapInfo.SizeX,
                                     myBitmap.BitmapInfo.SizeY));
-            timeLabel.Text = stopwatch.Elapsed.Seconds.ToString() + "." + stopwatch.Elapsed.Milliseconds.ToString();
+            timeLabel.Text = stopwatch.Elapsed.Seconds.ToString() + "." + TimeResult.convertMilis(stopwatch.Elapsed.Milliseconds);
             statusStrip1.Refresh();
             formViewer.showBitmap(myBitmap.CurrentBitmap, pictureBox2);
             formViewer.updateListBox(listBox1, listTimeResult);
@@ -165,23 +165,14 @@ namespace BitMapEditor
                 listBox1.Visible = true;
         }
 
-
-        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        private void cToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var backgroundWorker = sender as BackgroundWorker;
-            for (int i = 1; i <= 100; i++)
-            {
-                // Wait 100 milliseconds.
-                Thread.Sleep(100);
-                // Report progress.
-                backgroundWorker.ReportProgress(i);
-            }
+            rbCpp.Checked = true;
         }
 
-        private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        private void asemblerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            progressBar2.Value = e.ProgressPercentage;
+            rbAsm.Checked = true;
         }
-          
     }
 }

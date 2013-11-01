@@ -63,7 +63,6 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.progressBar2 = new System.Windows.Forms.ProgressBar();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.groupInfo.SuspendLayout();
@@ -151,11 +150,13 @@
             // 
             resources.ApplyResources(this.cToolStripMenuItem, "cToolStripMenuItem");
             this.cToolStripMenuItem.Name = "cToolStripMenuItem";
+            this.cToolStripMenuItem.Click += new System.EventHandler(this.cToolStripMenuItem_Click);
             // 
             // asemblerToolStripMenuItem
             // 
             resources.ApplyResources(this.asemblerToolStripMenuItem, "asemblerToolStripMenuItem");
             this.asemblerToolStripMenuItem.Name = "asemblerToolStripMenuItem";
+            this.asemblerToolStripMenuItem.Click += new System.EventHandler(this.asemblerToolStripMenuItem_Click);
             // 
             // tabelaCzasówToolStripMenuItem
             // 
@@ -313,11 +314,6 @@
             this.progressBar2.Name = "progressBar2";
             this.progressBar2.Step = 1;
             // 
-            // backgroundWorker1
-            // 
-            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
-            this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker1_ProgressChanged);
-            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -387,7 +383,6 @@
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.ToolStripMenuItem tabelaCzasówToolStripMenuItem;
         private System.Windows.Forms.ProgressBar progressBar2;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
 

@@ -59,10 +59,14 @@ namespace BitMapEditor
         public void updateListBox(ListBox listBox1, List<TimeResult> listTimeResult)
         {
             String item = null;
+            listBox1.Items.Clear();
+
             foreach (TimeResult listItem in listTimeResult)
-                item = listItem.Implementation + "\t" + listItem.FunctionName + "\t" + listItem.Seconds + "." + listItem.Miliseconds
-                    + " sec.\t" + listItem.Width + " x " + listItem.Height;
+            {
+                item = listItem.Implementation + "   " + listItem.FunctionName + "   " + listItem.Seconds + "." + listItem.strMilis
+                    + " sec.   " + listItem.Width + " x " + listItem.Height;
                 listBox1.Items.Add(item);
+            }
         }
     }
 }
