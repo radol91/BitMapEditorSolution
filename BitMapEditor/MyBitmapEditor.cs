@@ -15,18 +15,19 @@ namespace BitMapEditor
         private const int MAX = 256;
         internal void grayScale(MyBitmap myBitmap)
         {
+            myBitmap.PreviousBitmap = (Bitmap)myBitmap.CurrentBitmap.Clone();
+            // Wykorzystanie modelu YUV
             const float rMod = 0.299f;
             const float gMod = 0.587f;
             const float bMod = 0.114f;
             Graphics g = Graphics.FromImage(myBitmap.CurrentBitmap);
-
-            // Wykorzystanie modelu YUV
+       
             ColorMatrix colorMatrix = new ColorMatrix(new[]
             {
-                new[] {rMod, rMod, rMod, 0, 0},
-                new[] {gMod, gMod, gMod, 0, 0},
-                new[] {bMod, bMod, bMod, 0, 0},
-                new[] {0.0f, 0.0f, 0.0f, 1, 0},
+                new[] {rMod, rMod, rMod, 0, 1},
+                new[] {gMod, gMod, gMod, 0, 1},
+                new[] {bMod, bMod, bMod, 0, 1},
+                new[] {0.0f, 0.0f, 0.0f, 1, 1},
                 new[] {0.0f, 0.0f, 0.0f, 0, 1}
             });
 
@@ -36,20 +37,17 @@ namespace BitMapEditor
             int y = myBitmap.BitmapInfo.SizeY;
             g.DrawImage(myBitmap.CurrentBitmap, new Rectangle(0, 0, x, y), 0, 0, x, y, GraphicsUnit.Pixel, attributes);
             g.Dispose();
-
-            myBitmap.BitmapInfo.PreviousPixelArray = myBitmap.BitmapInfo.CurrentPixelArray;
-            myBitmap.BitmapInfo.CurrentPixelArray = MyBitmapInfo.createPixelArray(myBitmap.CurrentBitmap);
         }
 
 
-        internal void sharpenBitmap(MyBitmap bmp)
-        {
-            Bitmap sharpenImage = new Bitmap(bmp.BitmapInfo.SizeX, bmp.BitmapInfo.SizeY);
+        internal void sharpenBitmap(MyBitmap myBitmap)
+        {            
+            Bitmap sharpenImage = new Bitmap(myBitmap.BitmapInfo.SizeX, myBitmap.BitmapInfo.SizeY);
 
             int filterWidth = 3;
             int filterHeight = 3;
-            int width = bmp.BitmapInfo.SizeX;
-            int height = bmp.BitmapInfo.SizeY;
+            int width = myBitmap.BitmapInfo.SizeX;
+            int height = myBitmap.BitmapInfo.SizeY;
 
             // Tablica maski.
             int[,] filter = { { -1, -1, -1 }, { -1, 9, -1 }, { -1, -1, -1 } };
@@ -64,7 +62,7 @@ namespace BitMapEditor
                 for (int y = 0; y < height; ++y)
                 {
                     int red = 0, green = 0, blue = 0;
-                    Color imageColor = bmp.CurrentBitmap.GetPixel(x, y);
+                    Color imageColor = myBitmap.CurrentBitmap.GetPixel(x, y);
 
                     for (int filterX = 0; filterX < filterWidth; filterX++)
                     {
@@ -73,7 +71,7 @@ namespace BitMapEditor
                             int imageX = (x - filterWidth / 2 + filterX + width) % width;
                             int imageY = (y - filterHeight / 2 + filterY + height) % height;
 
-                            Color bmpColor = bmp.CurrentBitmap.GetPixel(imageX, imageY);
+                            Color bmpColor = myBitmap.CurrentBitmap.GetPixel(imageX, imageY);
                             red += bmpColor.R * filter[filterX, filterY];
                             green += bmpColor.G * filter[filterX, filterY];
                             blue += bmpColor.B * filter[filterX, filterY];
@@ -98,22 +96,21 @@ namespace BitMapEditor
                 }
             }
 
-            bmp.BitmapInfo.PreviousPixelArray = bmp.BitmapInfo.CurrentPixelArray;
-            bmp.CurrentBitmap = sharpenImage;
-            bmp.BitmapInfo.CurrentPixelArray = MyBitmapInfo.createPixelArray(bmp.CurrentBitmap);
+            myBitmap.CurrentBitmap = sharpenImage;
         }
 
         internal void goBack(MyBitmap myBitmap)
         {
-            myBitmap.BitmapInfo.CurrentPixelArray = myBitmap.BitmapInfo.PreviousPixelArray;
-            myBitmap.CurrentBitmap = createBitmapFromPixelArray(myBitmap.BitmapInfo.CurrentPixelArray);
+            Bitmap tmp = (Bitmap)myBitmap.PreviousBitmap.Clone();
+            myBitmap.CurrentBitmap = myBitmap.PreviousBitmap;
+            myBitmap.PreviousBitmap = tmp;
         }
 
         internal void inverseBitmap(MyBitmap myBitmap)
         {
+            myBitmap.PreviousBitmap = (Bitmap)myBitmap.CurrentBitmap.Clone();
             Graphics g = Graphics.FromImage(myBitmap.CurrentBitmap);
 
-            // Wykorzystanie modelu YUV
             ColorMatrix colorMatrix = new ColorMatrix(new[]
             {
                 new[] {-1.0f, 0.0f, 0.0f, 0, 0},
@@ -129,10 +126,6 @@ namespace BitMapEditor
             int y = myBitmap.BitmapInfo.SizeY;
             g.DrawImage(myBitmap.CurrentBitmap, new Rectangle(0, 0, x, y), 0, 0, x, y, GraphicsUnit.Pixel, attributes);
             g.Dispose();
-
-            myBitmap.BitmapInfo.PreviousPixelArray = myBitmap.BitmapInfo.CurrentPixelArray;
-            myBitmap.BitmapInfo.CurrentPixelArray = MyBitmapInfo.createPixelArray(myBitmap.CurrentBitmap);
-
         }
 
         internal Bitmap createBitmapFromPixelArray(byte[] pixelArray)

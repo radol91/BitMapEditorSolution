@@ -15,8 +15,7 @@ namespace BitMapEditor
         private int xSize;
         private int ySize;
         private String bmpPath;
-        private byte[] prePixelArray;
-        private byte[] curPixelArray;
+        private byte[] byteArray;
         private int offset;
         private int pixelCount;
 
@@ -24,16 +23,12 @@ namespace BitMapEditor
         {
             // Wyciaganie danych z naglowka bitmapy.
             Bitmap bitmap = new Bitmap(img);
-            //BitmapData bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height),
-            //    ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
-            //this.bmpStride = bitmapData.Stride;
-            //bitmap.UnlockBits(bitmapData);
+
             this.xSize = bitmap.Size.Width;
             this.ySize = bitmap.Size.Height;
-            this.prePixelArray = createPixelArray(bitmap);
-            this.curPixelArray = createPixelArray(bitmap);
-            this.offset = this.prePixelArray[10];
-            this.pixelCount = this.prePixelArray[28];
+            this.byteArray = createPixelArray(bitmap);
+            this.offset = this.byteArray[10];
+            this.pixelCount = this.byteArray[28];
             this.bmpPath = path;
             this.bmpWeight = this.offset + 4 * 16 + bitmap.Width * bitmap.Size.Height;
             //this.bmpWeight = (int)(this.pixelTab[2]);
@@ -94,26 +89,15 @@ namespace BitMapEditor
             }
   
         }
-        public byte[] PreviousPixelArray
+        public byte[] ByteArray
         {
             get
             {
-                return prePixelArray;
+                return byteArray;
             }
             set
             {
-                prePixelArray = value;
-            }
-        }
-        public byte[] CurrentPixelArray
-        {
-            get
-            {
-                return curPixelArray;
-            }
-            set
-            {
-                curPixelArray = value;
+                byteArray = value;
             }
         }
         public int Offset

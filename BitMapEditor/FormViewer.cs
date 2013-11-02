@@ -11,7 +11,7 @@ namespace BitMapEditor
     class FormViewer
     {
         public void showBitmap(Bitmap bmp, PictureBox picBox)
-        {
+        {            
             picBox.Image = scaleBitmap(bmp,picBox);
         }
 
@@ -68,5 +68,6 @@ namespace BitMapEditor
                 listBox1.Items.Add(item);
             }
         }
+
     }
 }
