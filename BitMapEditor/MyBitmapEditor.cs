@@ -127,12 +127,6 @@ namespace BitMapEditor
             g.DrawImage(myBitmap.CurrentBitmap, new Rectangle(0, 0, x, y), 0, 0, x, y, GraphicsUnit.Pixel, attributes);
             g.Dispose();
         }
-
-        internal Bitmap createBitmapFromPixelArray(byte[] pixelArray)
-        {
-            Image img = Bitmap.FromStream(new MemoryStream(pixelArray));
-            return new Bitmap(img);
-        }
     }
 }
 
