@@ -40,7 +40,14 @@ namespace BitMapEditor
         public void finalizeAssemblerFunc(MyBitmap myBitmap)
         {
             myBitmap.PreviousBitmap = (Bitmap)myBitmap.CurrentBitmap.Clone();
-            myBitmap.CurrentBitmap = createBitmapFromPixelArray(pixelArray, SizeX, SizeY);
+            myBitmap.CurrentBitmap = createBitmapFromPixelArray(myBitmap.BitmapInfo.pixelArray, SizeX, SizeY);
+        }
+
+        public void finalizeAssemblerFuncSharp(MyBitmap myBitmap, byte[,] resultArray)
+        {
+            myBitmap.PreviousBitmap = (Bitmap)myBitmap.CurrentBitmap.Clone();
+            myBitmap.BitmapInfo.pixelArray = (byte[,])resultArray.Clone();
+            myBitmap.CurrentBitmap = myBitmap.BitmapInfo.createBitmapFromPixelArray(resultArray, myBitmap.BitmapInfo.SizeX, myBitmap.BitmapInfo.SizeY);
         }
 
         // Konwertuje bitmape na 24bitowa;

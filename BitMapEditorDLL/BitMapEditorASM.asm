@@ -4,17 +4,19 @@
 .data
 .code
 
+;-----------------------------------------------------------;
+; Funkcja testujaca.
 Dodaj proc uses ebx a:DWORD, b:DWORD
-mov eax,a
-mov ebx,b
-add eax, ebx
-
-ret	;wartoœæ zwracana jest przez akumulator!
+	mov eax,a
+	mov ebx,b
+	add eax, ebx
+	ret	
 Dodaj endp 
 
+;-----------------------------------------------------------;
 GreyASM PROC bitmap : dword, bWidth : dword, bHeight : dword
 	pushad
-	mov esi, bitmap
+	mov esi, bitmap			; ESI <- adres bitmapy
 	mov eax, bWidth
 	mov ebx, bHeight
 	mul ebx
@@ -23,7 +25,7 @@ GreyASM PROC bitmap : dword, bWidth : dword, bHeight : dword
 	mov ecx, eax			; ECX <- rozmiar obrazka w bajtach
 	add ecx, esi			; ECX <- adres zakonczenia procedury
 
-	assume esi:ptr byte
+	assume esi:ptr byte		; ESI wskazuje na jeden bajt pamieci
 	_loop:
 			xor eax, eax	; Zerowanie rejestru
 			xor ebx, ebx	; Zerowanie rejestru
@@ -47,9 +49,10 @@ GreyASM PROC bitmap : dword, bWidth : dword, bHeight : dword
 	ret
 GreyASM ENDP
 
+;-----------------------------------------------------------;
 InverseASM PROC bitmap : dword, bWidth : dword, bHeight : dword
 	pushad
-	mov esi, bitmap
+	mov esi, bitmap			; ESI <- adres bitmapy
 	mov eax, bWidth
 	mov ebx, bHeight
 	mul ebx
@@ -73,10 +76,11 @@ InverseASM PROC bitmap : dword, bWidth : dword, bHeight : dword
 	ret
 InverseASM ENDP
 
+;-----------------------------------------------------------;
 SharpASM PROC bitmap : dword, result : dword, bWidth : dword, bHeight : dword
 	pushad
-	mov esi, bitmap
-	mov edi, result
+	mov esi, bitmap			; ESI <- adres bitmapy
+	mov edi, result			; EDI <- adres bitmapy wynikowej
 	mov eax, bWidth
 	mov ebx, bHeight
 	mul ebx
@@ -130,20 +134,20 @@ SharpASM PROC bitmap : dword, result : dword, bWidth : dword, bHeight : dword
 
 		mov bx, ax
 
-		cmp bh, 0h
-		je write
+		cmp bh, 0h			
+		je write			; jezeli jest z przedzialu 0,255 wstaw wartosc do tablicy wynikowej
 
 		cmp bx, 0FFh
-		jg write_255
+		jg write_255		; jezeli ax jest wieksze od 255 ustaw 255
 
 		cmp bx, 0h
-		jng write_zero
+		jng write_zero		; jezeli ax jest mniejsze od 0 to ustaw 0
 
 		assume esi:ptr byte 
 
-	next:		
+	next:							; licz kolejna skladowa
 		add edi, 1					
-		add esi, 1					; licz kolejna skladowa
+		add esi, 1					
 		cmp ecx, esi				; sprawdz czy koniec
 		ja _loop
 
@@ -162,6 +166,7 @@ SharpASM PROC bitmap : dword, result : dword, bWidth : dword, bHeight : dword
 	write_zero: 
 		mov [edi],0h			; jezeli ax jest mniejsze od 0 to ustaw 0
 		jmp next
-
 SharpASM ENDP
+
+;-----------------------------------------------------------;
 end 

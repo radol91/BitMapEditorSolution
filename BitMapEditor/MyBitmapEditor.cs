@@ -39,6 +39,7 @@ namespace BitMapEditor
             int x = myBitmap.BitmapInfo.SizeX;
             int y = myBitmap.BitmapInfo.SizeY;
             g.DrawImage(myBitmap.CurrentBitmap, new Rectangle(0, 0, x, y), 0, 0, x, y, GraphicsUnit.Pixel, attributes);
+            updateArrays(myBitmap);
             g.Dispose();
         }
 
@@ -86,7 +87,6 @@ namespace BitMapEditor
             {
                 for (int j = 0; j < height; ++j) sharpenImage.SetPixel(i, j, result[i, j]);
             }
-            myBitmap.CurrentBitmap = sharpenImage;
         }
 
         // Obraz w negatywie;       
@@ -110,6 +110,7 @@ namespace BitMapEditor
             int y = myBitmap.BitmapInfo.SizeY;
             g.DrawImage(myBitmap.CurrentBitmap, new Rectangle(0, 0, x, y), 0, 0, x, y, GraphicsUnit.Pixel, attributes);
             g.Dispose();
+            updateArrays(myBitmap);
         }
 
         // Cofniecie ostatniej operacji;
@@ -118,6 +119,14 @@ namespace BitMapEditor
             Bitmap tmp = (Bitmap)myBitmap.PreviousBitmap.Clone();
             myBitmap.CurrentBitmap = myBitmap.PreviousBitmap;
             myBitmap.PreviousBitmap = tmp;
+            updateArrays(myBitmap);
+        }
+
+        // Nadpisanie byteArray i pixelArray;
+        internal static void updateArrays(MyBitmap myBitmap)
+        {
+            myBitmap.BitmapInfo.ByteArray = myBitmap.BitmapInfo.toByteArray(MyBitmapInfo.convertTo24bpp(myBitmap.CurrentBitmap), ImageFormat.Bmp);
+            myBitmap.BitmapInfo.PixelArray = myBitmap.BitmapInfo.convertArray(myBitmap.BitmapInfo.ByteArray, myBitmap.BitmapInfo.SizeX, myBitmap.BitmapInfo.SizeY);
         }
 
         // Klasa odpowiedzialna za funckje edytujace napisane w Asemblerze;

@@ -28,11 +28,6 @@ namespace BitMapEditor
         private List<TimeResult> listTimeResult;
         private Action action;
         private Implement impl;        
-        private runBackgroundFunc pFunction;
-        private runBackgroundFuncASM pFunctionASM;
-
-        delegate void runBackgroundFunc(MyBitmap myBitmap);
-        delegate void runBackgroundFuncASM(IntPtr pixelArray, int sizeX, int sizeY);
 
         public MainForm()
         {
@@ -134,48 +129,11 @@ namespace BitMapEditor
                 funcState.Text = StateStrings[(int)State.RUNNING];
 
                 if (isAsmEnable)
-                {
                     impl = Implement.ASEMBLER;
-                    switch (action)
-                    {
-                        case Action.BMP_INVERSE:
-                            pFunctionASM = MyBitmapEditor.UnsafeNativeMethods.InverseASM;
-                            break;
-                        case Action.BMP_GREYSCALE:
-                            pFunctionASM = MyBitmapEditor.UnsafeNativeMethods.GreyASM;
-                            break;
-                        case Action.BMP__SHARPEN:
-                            byte[,] resultArray = myBitmap.BitmapInfo.convertArray(myBitmap.BitmapInfo.ByteArray, myBitmap.BitmapInfo.SizeX,myBitmap.BitmapInfo.SizeY);
-                            IntPtr a0 = Marshal.UnsafeAddrOfPinnedArrayElement(myBitmap.BitmapInfo.PixelArray, 0);
-                            IntPtr a1 = Marshal.UnsafeAddrOfPinnedArrayElement(resultArray, 0);
-                            MyBitmapEditor.UnsafeNativeMethods.SharpASM(a0,a1,myBitmap.BitmapInfo.SizeX,myBitmap.BitmapInfo.SizeY);
-                            myBitmap.PreviousBitmap = (Bitmap)myBitmap.CurrentBitmap.Clone();
-                            myBitmap.CurrentBitmap = myBitmap.BitmapInfo.createBitmapFromPixelArray(resultArray,myBitmap.BitmapInfo.SizeX,myBitmap.BitmapInfo.SizeY);
-                            stopwatch.Stop();
-                            formViewer.showBitmap(myBitmap.CurrentBitmap,pictureBox2);                            
-                            //pFunctionASM = MyBitmapEditor.UnsafeNativeMethods.SharpASM;
-                             break;
-                    }
-                    if (!action.Equals(Action.BMP__SHARPEN)) //Wywolujemy wszystkie funkcje oprocz ostrosciASM w osobnym watku.
-                        backgroundWorker.RunWorkerAsync(isAsmEnable);
-                }
                 else
-                {
                     impl = Implement.C__SHARP;
-                    switch (action)
-                    {
-                        case Action.BMP_INVERSE:
-                            pFunction = bmpManager.BitMapEditor.inverseBitmap;
-                            break;
-                        case Action.BMP_GREYSCALE:
-                            pFunction = bmpManager.BitMapEditor.grayScale;
-                            break;
-                        case Action.BMP__SHARPEN:
-                            pFunction = bmpManager.BitMapEditor.sharpenBitmap;
-                            break;
-                    }
-                    backgroundWorker.RunWorkerAsync(isAsmEnable);
-                }
+
+                backgroundWorker.RunWorkerAsync(isAsmEnable);
             }
         }
 
@@ -199,18 +157,45 @@ namespace BitMapEditor
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
-            stopwatch.Start();
-            if ((bool)e.Argument)
+            if (impl == Implement.ASEMBLER)
             {
+                stopwatch.Start();
                 IntPtr a0 = Marshal.UnsafeAddrOfPinnedArrayElement(myBitmap.BitmapInfo.PixelArray, 0);
-                pFunctionASM(a0, myBitmap.BitmapInfo.SizeX, myBitmap.BitmapInfo.SizeY);
-
-                myBitmap.BitmapInfo.finalizeAssemblerFunc(myBitmap);
+                switch (action)
+                {
+                    case Action.BMP_GREYSCALE:
+                        MyBitmapEditor.UnsafeNativeMethods.GreyASM(a0, myBitmap.BitmapInfo.SizeX, myBitmap.BitmapInfo.SizeY);
+                        myBitmap.BitmapInfo.finalizeAssemblerFunc(myBitmap);
+                        break;
+                    case Action.BMP_INVERSE:
+                        MyBitmapEditor.UnsafeNativeMethods.InverseASM(a0, myBitmap.BitmapInfo.SizeX, myBitmap.BitmapInfo.SizeY);
+                        myBitmap.BitmapInfo.finalizeAssemblerFunc(myBitmap);
+                        break;
+                    case Action.BMP__SHARPEN:
+                        byte[,] resultArray = myBitmap.BitmapInfo.convertArray(myBitmap.BitmapInfo.ByteArray, myBitmap.BitmapInfo.SizeX,myBitmap.BitmapInfo.SizeY);
+                        IntPtr a1 = Marshal.UnsafeAddrOfPinnedArrayElement(resultArray, 0);
+                        MyBitmapEditor.UnsafeNativeMethods.SharpASM(a0, a1, myBitmap.BitmapInfo.SizeX, myBitmap.BitmapInfo.SizeY);
+                        myBitmap.BitmapInfo.finalizeAssemblerFuncSharp(myBitmap,resultArray);    
+                        break;
+                }
                 stopwatch.Stop();
             }
-            else
+
+            else if(impl == Implement.C__SHARP)
             {
-                pFunction(myBitmap);
+                stopwatch.Start();
+                switch (action)
+                {
+                    case Action.BMP_GREYSCALE:
+                        bmpManager.BitMapEditor.grayScale(myBitmap);
+                        break;
+                    case Action.BMP_INVERSE:
+                        bmpManager.BitMapEditor.inverseBitmap(myBitmap);
+                        break;
+                    case Action.BMP__SHARPEN:
+                        bmpManager.BitMapEditor.sharpenBitmap(myBitmap);
+                        break;
+                }
                 stopwatch.Stop();
             }
         }
