@@ -11,7 +11,7 @@ namespace BitMapEditor
     class FormViewer
     {
         public void showBitmap(Bitmap bmp, PictureBox picBox)
-        {            
+        {
             picBox.Image = scaleBitmap(bmp,picBox);
         }
 

@@ -15,6 +15,10 @@ namespace BitMapEditor
     {
         private const int MAX = 256;
 
+        public MyBitmapEditor()
+        {
+        }
+
         // Obraz w skali szarości;
         internal void grayScale(MyBitmap myBitmap)
         {
@@ -39,13 +43,14 @@ namespace BitMapEditor
             int x = myBitmap.BitmapInfo.SizeX;
             int y = myBitmap.BitmapInfo.SizeY;
             g.DrawImage(myBitmap.CurrentBitmap, new Rectangle(0, 0, x, y), 0, 0, x, y, GraphicsUnit.Pixel, attributes);
-            updateArrays(myBitmap);
+            //myBitmap.updateArrays();
             g.Dispose();
         }
 
         // Obraz wyostrzony maską 3x3
         internal void sharpenBitmap(MyBitmap myBitmap)
-        {            
+        {
+            myBitmap.PreviousBitmap = (Bitmap)myBitmap.CurrentBitmap.Clone();
             Bitmap sharpenImage = new Bitmap(myBitmap.BitmapInfo.SizeX, myBitmap.BitmapInfo.SizeY);
             int filterWidth = 3;
             int filterHeight = 3;
@@ -87,6 +92,8 @@ namespace BitMapEditor
             {
                 for (int j = 0; j < height; ++j) sharpenImage.SetPixel(i, j, result[i, j]);
             }
+            myBitmap.CurrentBitmap = MyBitmap.convertTo24bpp(sharpenImage);
+            myBitmap.updateArrays();
         }
 
         // Obraz w negatywie;       
@@ -110,7 +117,7 @@ namespace BitMapEditor
             int y = myBitmap.BitmapInfo.SizeY;
             g.DrawImage(myBitmap.CurrentBitmap, new Rectangle(0, 0, x, y), 0, 0, x, y, GraphicsUnit.Pixel, attributes);
             g.Dispose();
-            updateArrays(myBitmap);
+            myBitmap.updateArrays();
         }
 
         // Cofniecie ostatniej operacji;
@@ -119,14 +126,7 @@ namespace BitMapEditor
             Bitmap tmp = (Bitmap)myBitmap.PreviousBitmap.Clone();
             myBitmap.CurrentBitmap = myBitmap.PreviousBitmap;
             myBitmap.PreviousBitmap = tmp;
-            updateArrays(myBitmap);
-        }
-
-        // Nadpisanie byteArray i pixelArray;
-        internal static void updateArrays(MyBitmap myBitmap)
-        {
-            myBitmap.BitmapInfo.ByteArray = myBitmap.BitmapInfo.toByteArray(MyBitmapInfo.convertTo24bpp(myBitmap.CurrentBitmap), ImageFormat.Bmp);
-            myBitmap.BitmapInfo.PixelArray = myBitmap.BitmapInfo.convertArray(myBitmap.BitmapInfo.ByteArray, myBitmap.BitmapInfo.SizeX, myBitmap.BitmapInfo.SizeY);
+            myBitmap.updateArrays();
         }
 
         // Klasa odpowiedzialna za funckje edytujace napisane w Asemblerze;
@@ -140,6 +140,18 @@ namespace BitMapEditor
             public static extern void InverseASM(IntPtr byteArray, int sizeX, int sizeY);
             [DllImport("BitMapEditorDLL.dll")]
             public static extern void SharpASM(IntPtr byteArray, IntPtr resultArray, int sizeX, int sizeY);
+
+            /** Inicjuje wywołanie funkcji Asemblerowych aby uruchamiały sie bez narzutu czasowego platfromy .NET */
+            public static void InitAsmFunction()
+            {
+                byte[,] pixelArray = new byte[9, 9];
+                byte[,] resultArray = new byte[9, 9];
+                IntPtr a0 = Marshal.UnsafeAddrOfPinnedArrayElement(pixelArray, 0);
+                IntPtr a1 = Marshal.UnsafeAddrOfPinnedArrayElement(resultArray, 0);
+                GreyASM(a0, 3, 3);
+                InverseASM(a0, 3, 3);
+                SharpASM(a0, a1, 3, 3);
+            }
         }
     }
 }

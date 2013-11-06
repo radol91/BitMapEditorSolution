@@ -32,12 +32,15 @@ namespace BitMapEditor
         public MainForm()
         {
             InitializeComponent();
-            progressBar.Step = 1;
-            progressBar.Maximum = 100;
             formViewer = new FormViewer();
             bmpManager = new BitmapManager();
             stopwatch = new Stopwatch();
             listTimeResult = new List<TimeResult>();
+
+            //MyBitmapEditor.UnsafeNativeMethods.InitAsmFunction();
+
+            progressBar.Step = 1;
+            progressBar.Maximum = 100;
         }
 
 
@@ -160,25 +163,25 @@ namespace BitMapEditor
             if (impl == Implement.ASEMBLER)
             {
                 stopwatch.Start();
-                IntPtr a0 = Marshal.UnsafeAddrOfPinnedArrayElement(myBitmap.BitmapInfo.PixelArray, 0);
+                IntPtr a0 = Marshal.UnsafeAddrOfPinnedArrayElement(myBitmap.PixelArray, 0);
                 switch (action)
                 {
                     case Action.BMP_GREYSCALE:
                         MyBitmapEditor.UnsafeNativeMethods.GreyASM(a0, myBitmap.BitmapInfo.SizeX, myBitmap.BitmapInfo.SizeY);
-                        myBitmap.BitmapInfo.finalizeAssemblerFunc(myBitmap);
+                        myBitmap.finalizeAssemblerFunc();
                         break;
                     case Action.BMP_INVERSE:
                         MyBitmapEditor.UnsafeNativeMethods.InverseASM(a0, myBitmap.BitmapInfo.SizeX, myBitmap.BitmapInfo.SizeY);
-                        myBitmap.BitmapInfo.finalizeAssemblerFunc(myBitmap);
+                        myBitmap.finalizeAssemblerFunc();
                         break;
                     case Action.BMP__SHARPEN:
-                        byte[,] resultArray = myBitmap.BitmapInfo.convertArray(myBitmap.BitmapInfo.ByteArray, myBitmap.BitmapInfo.SizeX,myBitmap.BitmapInfo.SizeY);
+                        byte[,] resultArray = myBitmap.convertArray(myBitmap.ByteArray, myBitmap.BitmapInfo.SizeX,myBitmap.BitmapInfo.SizeY);
                         IntPtr a1 = Marshal.UnsafeAddrOfPinnedArrayElement(resultArray, 0);
                         MyBitmapEditor.UnsafeNativeMethods.SharpASM(a0, a1, myBitmap.BitmapInfo.SizeX, myBitmap.BitmapInfo.SizeY);
-                        myBitmap.BitmapInfo.finalizeAssemblerFuncSharp(myBitmap,resultArray);    
+                        myBitmap.finalizeAssemblerFuncSharp(resultArray);    
                         break;
                 }
-                stopwatch.Stop();
+                stopwatch.Stop();             
             }
 
             else if(impl == Implement.C__SHARP)
@@ -203,7 +206,6 @@ namespace BitMapEditor
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            progressBar.Value = progressBar.Maximum;
             listTimeResult.Add(new TimeResult(impl.ToString(),
                                     action.ToString(),
                                     stopwatch.Elapsed.Seconds,
@@ -214,6 +216,7 @@ namespace BitMapEditor
             statusStrip1.Refresh();
             formViewer.showBitmap(myBitmap.CurrentBitmap, pictureBox2);
             formViewer.updateListBox(listBox1, listTimeResult);
+            progressBar.Value = progressBar.Maximum;
             funcState.Text = StateStrings[(int)State.READY];
             backgroundWorker.CancelAsync();
         }

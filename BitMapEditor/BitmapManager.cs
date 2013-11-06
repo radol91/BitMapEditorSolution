@@ -35,14 +35,12 @@ namespace BitMapEditor
             if (openDialog.FileName != "*.bmp")
             {
                 Image image = Image.FromFile(openDialog.FileName);
-
-                MyBitmapInfo mbi = new MyBitmapInfo(image, openDialog.FileName);
                 openDialog.Dispose();
-                return new MyBitmap(image, mbi);
+                return new MyBitmap(image, openDialog.FileName);
             }
             return null;
         }
-        
+      
         public void saveBitmap(MyBitmap myBitmap)
         {
             if (myBitmap != null)
