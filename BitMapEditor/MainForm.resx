@@ -149,6 +149,36 @@
   <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>174, 17</value>
   </metadata>
+  <data name="menuStrip1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="menuStrip1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>802, 24</value>
+  </data>
+  <data name="menuStrip1.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="menuStrip1.Text" xml:space="preserve">
+    <value>menuStrip1</value>
+  </data>
+  <data name="&gt;&gt;menuStrip1.Name" xml:space="preserve">
+    <value>menuStrip1</value>
+  </data>
+  <data name="&gt;&gt;menuStrip1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuStrip1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;menuStrip1.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="plikToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>38, 20</value>
+  </data>
+  <data name="plikToolStripMenuItem.Text" xml:space="preserve">
+    <value>Plik</value>
+  </data>
   <data name="otwórzPlikToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         R0lGODlhXgBeAIcAAP///yDQGP/oiPjgOP/ocPjYIPjoQPjgMP/okNioAP/wqP/ogNCYAP/QCPjYKP/Y
@@ -2182,11 +2212,11 @@
   <data name="zamknijToolStripMenuItem.Text" xml:space="preserve">
     <value>Zamknij</value>
   </data>
-  <data name="plikToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>38, 20</value>
+  <data name="edycjaToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 20</value>
   </data>
-  <data name="plikToolStripMenuItem.Text" xml:space="preserve">
-    <value>Plik</value>
+  <data name="edycjaToolStripMenuItem.Text" xml:space="preserve">
+    <value>Edycja</value>
   </data>
   <data name="cofnijToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Z</value>
@@ -2197,11 +2227,11 @@
   <data name="cofnijToolStripMenuItem.Text" xml:space="preserve">
     <value>Cofnij</value>
   </data>
-  <data name="edycjaToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 20</value>
+  <data name="implementacjaToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>98, 20</value>
   </data>
-  <data name="edycjaToolStripMenuItem.Text" xml:space="preserve">
-    <value>Edycja</value>
+  <data name="implementacjaToolStripMenuItem.Text" xml:space="preserve">
+    <value>Implementacja</value>
   </data>
   <data name="cToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -2252,11 +2282,11 @@
   <data name="tabelaCzasówToolStripMenuItem.Text" xml:space="preserve">
     <value>Tabela czasów</value>
   </data>
-  <data name="implementacjaToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>98, 20</value>
+  <data name="pomocToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>57, 20</value>
   </data>
-  <data name="implementacjaToolStripMenuItem.Text" xml:space="preserve">
-    <value>Implementacja</value>
+  <data name="pomocToolStripMenuItem.Text" xml:space="preserve">
+    <value>Pomoc</value>
   </data>
   <data name="infoToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -2416,59 +2446,11 @@
   <data name="infoToolStripMenuItem.Text" xml:space="preserve">
     <value>Info</value>
   </data>
-  <data name="pomocToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>57, 20</value>
-  </data>
-  <data name="pomocToolStripMenuItem.Text" xml:space="preserve">
-    <value>Pomoc</value>
-  </data>
-  <data name="menuStrip1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="menuStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>802, 24</value>
-  </data>
-  <data name="menuStrip1.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="menuStrip1.Text" xml:space="preserve">
-    <value>menuStrip1</value>
-  </data>
-  <data name="&gt;&gt;menuStrip1.Name" xml:space="preserve">
-    <value>menuStrip1</value>
-  </data>
-  <data name="&gt;&gt;menuStrip1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;menuStrip1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;menuStrip1.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
   <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>289, 17</value>
   </metadata>
   <data name="statusStrip1.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
-  </data>
-  <data name="toolStripStatusLabel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>82, 17</value>
-  </data>
-  <data name="toolStripStatusLabel1.Text" xml:space="preserve">
-    <value> Czas operacji:</value>
-  </data>
-  <data name="timeLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>28, 17</value>
-  </data>
-  <data name="timeLabel.Text" xml:space="preserve">
-    <value>0.00</value>
-  </data>
-  <data name="toolStripStatusLabel2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>24, 17</value>
-  </data>
-  <data name="toolStripStatusLabel2.Text" xml:space="preserve">
-    <value>sec</value>
   </data>
   <data name="statusStrip1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 431</value>
@@ -2492,7 +2474,97 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;statusStrip1.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>10</value>
+  </data>
+  <data name="toolStripStatusLabel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>82, 17</value>
+  </data>
+  <data name="toolStripStatusLabel1.Text" xml:space="preserve">
+    <value> Czas operacji:</value>
+  </data>
+  <data name="timeLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>28, 17</value>
+  </data>
+  <data name="timeLabel.Text" xml:space="preserve">
+    <value>0.00</value>
+  </data>
+  <data name="toolStripStatusLabel2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 17</value>
+  </data>
+  <data name="toolStripStatusLabel2.Text" xml:space="preserve">
+    <value>sec</value>
+  </data>
+  <data name="&gt;&gt;labRes.Name" xml:space="preserve">
+    <value>labRes</value>
+  </data>
+  <data name="&gt;&gt;labRes.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labRes.Parent" xml:space="preserve">
+    <value>groupInfo</value>
+  </data>
+  <data name="&gt;&gt;labRes.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;labResName.Name" xml:space="preserve">
+    <value>labResName</value>
+  </data>
+  <data name="&gt;&gt;labResName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labResName.Parent" xml:space="preserve">
+    <value>groupInfo</value>
+  </data>
+  <data name="&gt;&gt;labResName.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;labPath.Name" xml:space="preserve">
+    <value>labPath</value>
+  </data>
+  <data name="&gt;&gt;labPath.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labPath.Parent" xml:space="preserve">
+    <value>groupInfo</value>
+  </data>
+  <data name="&gt;&gt;labPath.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;labPathName.Name" xml:space="preserve">
+    <value>labPathName</value>
+  </data>
+  <data name="&gt;&gt;labPathName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labPathName.Parent" xml:space="preserve">
+    <value>groupInfo</value>
+  </data>
+  <data name="&gt;&gt;labPathName.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="groupInfo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 28</value>
+  </data>
+  <data name="groupInfo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>777, 38</value>
+  </data>
+  <data name="groupInfo.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="groupInfo.Text" xml:space="preserve">
+    <value>Informacje</value>
+  </data>
+  <data name="&gt;&gt;groupInfo.Name" xml:space="preserve">
+    <value>groupInfo</value>
+  </data>
+  <data name="&gt;&gt;groupInfo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupInfo.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;groupInfo.ZOrder" xml:space="preserve">
+    <value>9</value>
   </data>
   <data name="labRes.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2614,30 +2686,6 @@
   <data name="&gt;&gt;labPathName.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="groupInfo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 28</value>
-  </data>
-  <data name="groupInfo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>777, 38</value>
-  </data>
-  <data name="groupInfo.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="groupInfo.Text" xml:space="preserve">
-    <value>Informacje</value>
-  </data>
-  <data name="&gt;&gt;groupInfo.Name" xml:space="preserve">
-    <value>groupInfo</value>
-  </data>
-  <data name="&gt;&gt;groupInfo.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupInfo.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;groupInfo.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
   <data name="button2.Font" type="System.Drawing.Font, System.Drawing">
     <value>Ebrima, 8.25pt</value>
   </data>
@@ -2691,6 +2739,54 @@
   </data>
   <data name="&gt;&gt;button3.ZOrder" xml:space="preserve">
     <value>2</value>
+  </data>
+  <data name="&gt;&gt;rbCpp.Name" xml:space="preserve">
+    <value>rbCpp</value>
+  </data>
+  <data name="&gt;&gt;rbCpp.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rbCpp.Parent" xml:space="preserve">
+    <value>groupImpl</value>
+  </data>
+  <data name="&gt;&gt;rbCpp.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;rbAsm.Name" xml:space="preserve">
+    <value>rbAsm</value>
+  </data>
+  <data name="&gt;&gt;rbAsm.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rbAsm.Parent" xml:space="preserve">
+    <value>groupImpl</value>
+  </data>
+  <data name="&gt;&gt;rbAsm.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="groupImpl.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 354</value>
+  </data>
+  <data name="groupImpl.Size" type="System.Drawing.Size, System.Drawing">
+    <value>119, 63</value>
+  </data>
+  <data name="groupImpl.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="groupImpl.Text" xml:space="preserve">
+    <value>Implementacja</value>
+  </data>
+  <data name="&gt;&gt;groupImpl.Name" xml:space="preserve">
+    <value>groupImpl</value>
+  </data>
+  <data name="&gt;&gt;groupImpl.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupImpl.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;groupImpl.ZOrder" xml:space="preserve">
+    <value>8</value>
   </data>
   <data name="rbCpp.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2752,30 +2848,6 @@
   <data name="&gt;&gt;rbAsm.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="groupImpl.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 354</value>
-  </data>
-  <data name="groupImpl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>119, 63</value>
-  </data>
-  <data name="groupImpl.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="groupImpl.Text" xml:space="preserve">
-    <value>Implementacja</value>
-  </data>
-  <data name="&gt;&gt;groupImpl.Name" xml:space="preserve">
-    <value>groupImpl</value>
-  </data>
-  <data name="&gt;&gt;groupImpl.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupImpl.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;groupImpl.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
   <data name="groupOperacje.Location" type="System.Drawing.Point, System.Drawing">
     <value>137, 354</value>
   </data>
@@ -2798,7 +2870,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;groupOperacje.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>7</value>
   </data>
   <data name="pictureBox1.Location" type="System.Drawing.Point, System.Drawing">
     <value>50, 83</value>
@@ -2822,7 +2894,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pictureBox1.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>6</value>
   </data>
   <data name="pictureBox2.Location" type="System.Drawing.Point, System.Drawing">
     <value>406, 83</value>
@@ -2846,7 +2918,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pictureBox2.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>5</value>
   </data>
   <data name="listBox1.Font" type="System.Drawing.Font, System.Drawing">
     <value>Ebrima, 9pt</value>
@@ -2876,7 +2948,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;listBox1.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="progressBar.Location" type="System.Drawing.Point, System.Drawing">
     <value>762, 437</value>
@@ -2897,7 +2969,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;progressBar.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <metadata name="backgroundWorker.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
@@ -2924,6 +2996,69 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;funcState.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Ebrima, 8.25pt, style=Bold</value>
+  </data>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>567, 66</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>55, 17</value>
+  </data>
+  <data name="label1.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Aktualna</value>
+  </data>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
+  </data>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="label2.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Ebrima, 8.25pt, style=Bold</value>
+  </data>
+  <data name="label2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>193, 66</value>
+  </data>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>52, 17</value>
+  </data>
+  <data name="label2.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Oryginał</value>
+  </data>
+  <data name="&gt;&gt;label2.Name" xml:space="preserve">
+    <value>label2</value>
+  </data>
+  <data name="&gt;&gt;label2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">

@@ -1,4 +1,6 @@
 LIBRARY "BitMapEditorDLL" 
 EXPORTS 
 Dodaj
-Negatyw
+GreyASM
+InverseASM
+SharpASM

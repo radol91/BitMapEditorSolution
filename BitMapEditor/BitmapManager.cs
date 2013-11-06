@@ -45,22 +45,28 @@ namespace BitMapEditor
         
         public void saveBitmap(MyBitmap myBitmap)
         {
-            DialogResult result1 = MessageBox.Show("Czy chcesz nadpisać istniejący plik: \n" + myBitmap.BitmapInfo.Path,
-                    "Zapisz", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
-            if (result1 == DialogResult.Yes)
+            if (myBitmap != null)
             {
-                myBitmap.CurrentBitmap.Save(myBitmap.BitmapInfo.Path);
+                DialogResult result1 = MessageBox.Show("Czy chcesz nadpisać istniejący plik: \n" + myBitmap.BitmapInfo.Path,
+                        "Zapisz", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+                if (result1 == DialogResult.Yes)
+                {
+                    myBitmap.CurrentBitmap.Save(myBitmap.BitmapInfo.Path);
+                }
             }
         }
 
         public void saveBitmapAs(MyBitmap myBitmap)
         {
-            SaveFileDialog saveDialog = new SaveFileDialog();
-            saveDialog.FileName = "moj_plik";
-            saveDialog.Filter = "Plik graficzny (*.bmp)|*.BMP; *.bmp";
-            saveDialog.ShowDialog();
-            myBitmap.CurrentBitmap.Save(saveDialog.FileName);
-            saveDialog.Dispose();
+            if (myBitmap != null)
+            {
+                SaveFileDialog saveDialog = new SaveFileDialog();
+                saveDialog.FileName = "moj_plik";
+                saveDialog.Filter = "Plik graficzny (*.bmp)|*.BMP; *.bmp";
+                saveDialog.ShowDialog();
+                myBitmap.CurrentBitmap.Save(saveDialog.FileName);
+                saveDialog.Dispose();
+            }
         }
     }
 }
